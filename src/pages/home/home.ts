@@ -13,6 +13,7 @@ import * as cpr from 'cordova-plugin-ringermode/www/ringerMode';
 export class HomePage {
 
     data: any;
+    action: any;
     hasV: any;
     hasS: any;
     hasN: any;
@@ -21,9 +22,9 @@ export class HomePage {
         private androidPermissions: AndroidPermissions,
     ) {
 
-        this.hasS = cpr.setRingerSilent;
-        this.hasV = cpr.setRingerVibrate;
-        this.hasN = cpr.setRingerNormal;
+        this.hasS = cpr.setRingerSilent || 'undefined';
+        this.hasV = cpr.setRingerVibrate || 'undefined';
+        this.hasN = cpr.setRingerNormal || 'undefined';
 
         // this.getRingerMode();
     }
@@ -46,6 +47,7 @@ export class HomePage {
     }
 
     setSilent(): void {
+        this.action = 'silent';
         cpr.setRingerSilent(
             (data) => this.setData(data),
             (err) => this.setData(err),
@@ -53,14 +55,16 @@ export class HomePage {
     }
 
     setVibrate(): void {
-        cpr.setRingerSilent(
+        this.action = 'vibrate';
+        cpr.setRingerVibrate(
             (data) => this.setData(data),
             (err) => this.setData(err),
         );
     }
 
     setNormal(): void {
-        cpr.setRingerSilent(
+        this.action = 'normal';
+        cpr.setRingerNormal(
             (data) => this.setData(data),
             (err) => this.setData(err),
         );
