@@ -5,6 +5,9 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { PagesModule } from "../pages/pages.module";
+import { SharedModule } from "./shared/shared.module";
+import { SidemenuModule } from "./sidemenu/sidemenu.module";
 
 @NgModule({
     declarations: [
@@ -12,7 +15,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp, { preloadModules: false, }),
+        PagesModule,
+        SharedModule,
+        SidemenuModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -21,8 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
     ]
 })
-export class AppModule {
-}
+export class AppModule {}
