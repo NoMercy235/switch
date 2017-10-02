@@ -1,26 +1,37 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+## Switch!
 
-## How to use this template
+The project is trying to face an issue that I (and perhaps others are, too) am struggling with: being too lazy to switch the phone's profile from sound/vibration (when outside) to silent (when at work or sleeping). 
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+This will be a test for using Ionic (along with Angular) for developing an application for the Android (maybe it works on iOS as well) platform. The application will use the device motion sensors (such as accelerometer or gyroscope), along with some user defined settings (work/home locations, estimated hours when they are outside, estimated hours of sleep and perhaps even geolocation) to decide if the profile should be switched. The default action will be switching from vibration profile to silent profile, but these two might be able to be customized by the user.
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+### Deployment steps:
 
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
+Run locally: 
 ```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
+$ cd /project/path
+$ npm install
+$ ionic serve
 ```
 
-Then, to run it, cd into `myTabs` and run:
+To add a platform:
 
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+$ ionic cordova platform add android/ios
+$ ionic cordova run android/ios
 ```
 
-Substitute ios for android if not on a Mac.
+To generate the resource files run:
+
+```bash
+ionic cordova resources android
+ionic cordova resources android --splash
+```
+
+To generate the .apk file run:
+
+```bash
+$ ionic cordova build android
+```
+Add  `--release `  flag for the release version.
+
 

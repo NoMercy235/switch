@@ -1,8 +1,7 @@
 {
-  "name": "Alexandru",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "Switch",
+  "version": "1.0.0",
+  "author": "Alexandru Florian Barascu",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -34,5 +33,5 @@
     "@ionic/app-scripts": "3.0.0",
     "typescript": "2.3.4"
   },
-  "description": "An Ionic project"
+  "description": "The project is trying to face an issue that I (and perhaps others are, too) am struggling with: being too lazy to switch the phone's profile from sound/vibration (when outside) to silent (when at work or sleeping)."
 }
