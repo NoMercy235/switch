@@ -11,11 +11,23 @@ import * as cpr from 'cordova-plugin-ringermode/www/ringerMode';
 })
 export class HomePage {
 
+    data: any;
+
     constructor() {
+    }
+
+    getRingerMode(): void {
         cpr.getRingerMode(
-            (data) => console.log(data),
-            (err) => console.log(err),
+            (data) => this.data = data,
+            (err) => this.data = err,
         );
     }
 
+    setRingerMode(mode: number): void {
+        cpr.setRingerMode(
+            mode,
+            (data) => this.getRingerMode(),
+            (err) => this.getRingerMode(),
+        )
+    }
 }

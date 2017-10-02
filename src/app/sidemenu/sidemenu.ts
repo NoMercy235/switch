@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController } from "ionic-angular";
+import { NavController } from "ionic-angular";
 
 @Component({
     selector: 'ab-sidemenu',

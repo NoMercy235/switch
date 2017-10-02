@@ -8,5 +8,9 @@
 </ion-header>
 
 <ion-content>
+    <p ion-text>{{ data }}</p>
 
+    <button ion-button color="primary" (click)="setRingerMode(0)">Silent</button>
+    <button ion-button color="primary" (click)="setRingerMode(1)">Vibrate</button>
+    <button ion-button color="primary" (click)="setRingerMode(2)">Normal</button>
 </ion-content>
