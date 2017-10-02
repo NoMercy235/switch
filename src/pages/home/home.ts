@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { Globals } from "../../app/shared/globals";
 
+import * as cpr from 'cordova-plugin-ringermode/www/ringerMode';
+
 @IonicPage({ name: Globals.PAGE_NAMES.home })
 @Component({
     selector: 'page-home',
@@ -9,6 +11,11 @@ import { Globals } from "../../app/shared/globals";
 })
 export class HomePage {
 
-    constructor() {}
+    constructor() {
+        cpr.getRingerMode(
+            (data) => console.log(data),
+            (err) => console.log(err),
+        );
+    }
 
 }
