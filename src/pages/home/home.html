@@ -8,9 +8,13 @@
 </ion-header>
 
 <ion-content>
-    <p ion-text>{{ data }}</p>
 
-    <button ion-button color="primary" (click)="setRingerMode(0)">Silent</button>
-    <button ion-button color="primary" (click)="setRingerMode(1)">Vibrate</button>
-    <button ion-button color="primary" (click)="setRingerMode(2)">Normal</button>
+    <p ion-text>{{ data }}</p>
+    <p ion-text>{{ hasS + '' }}</p>
+    <p ion-text>{{ hasV + '' }}</p>
+    <p ion-text>{{ hasN + '' }}</p>
+
+    <button ion-button color="primary" (click)="setSilent()">Silent</button>
+    <button ion-button color="primary" (click)="setVibrate()">Vibrate</button>
+    <button ion-button color="primary" (click)="setNormal()">Normal</button>
 </ion-content>

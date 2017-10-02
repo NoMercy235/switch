@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PagesModule } from "../pages/pages.module";
 import { SharedModule } from "./shared/shared.module";
 import { SidemenuModule } from "./sidemenu/sidemenu.module";
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { SidemenuModule } from "./sidemenu/sidemenu.module";
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
+        AndroidPermissions,
     ]
 })
 export class AppModule {}
