@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar [color]="'primary'">
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="form">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label>Scan frequency: <span>{{ form.value.frequency }} (milliseconds)</span></ion-label>
+                <ion-range [formControlName]="'frequency'" [min]="100" [max]="2000" [step]="100" [color]="'primary'">
+                    <ion-icon range-left small name="analytics"></ion-icon>
+                    <ion-icon range-right name="analytics"></ion-icon>
+                </ion-range>
+            </ion-item>
+            <ion-item>
+                <ion-label>Motion sensibility: <span>{{ form.value.motionSensibility }} (seconds)</span></ion-label>
+                <ion-range [formControlName]="'motionSensibility'" [min]="2" [max]="60" [step]="1" [color]="'primary'">
+                    <ion-icon range-left small name="aperture"></ion-icon>
+                    <ion-icon range-right name="aperture"></ion-icon>
+                </ion-range>
+            </ion-item>
+            <ion-item>
+                <ion-label>Run in background?</ion-label>
+                <ion-toggle [color]="'primary'" [formControlName]="'runInBackground'" [(ngModel)]="runInBackground" (ionChange)="onRunInBackgroundChange($event)"></ion-toggle>
+            </ion-item>
+            <!--Removed because there is no support for this yet.-->
+            <!--<ion-item>-->
+                <!--<ion-label>Stay silent while screen is on?</ion-label>-->
+                <!--<ion-toggle [color]="'primary'" [formControlName]="'silentScreen'"></ion-toggle>-->
+            <!--</ion-item>-->
+            <!--<ion-item *ngIf="form.value.silentScreen">-->
+                <!--<ion-label>Delay (seconds):&nbsp;</ion-label>-->
+                <!--<ion-input type="number" [formControlName]="'silentScreenDelay'"></ion-input>-->
+            <!--</ion-item>-->
+        </ion-list>
+
+        <ion-footer>
+            <button ion-button full color="primary" class="bottom-button" (click)="saveSettings()" [disabled]="form.invalid">Save</button>
+        </ion-footer>
+    </form>
+</ion-content>

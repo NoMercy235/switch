@@ -8,14 +8,80 @@
 </ion-header>
 
 <ion-content>
+    <ion-card>
+        <ion-card-title text-center>Current Profile</ion-card-title>
+        <ion-card-content text-center>
+            <p *ngIf="ringerChangeError" ion-text color="danger"> {{ ringerChangeError }} </p>
+            <p *ngIf="!userPrefs.isEnabled" ion-text color="danger">
+                The app's functionality is currently disabled.
+            </p>
+            <h2 *ngIf="userPrefs.isEnabled" ion-text [color]="getStateColor()">{{ getDisplayRingerMode() }}</h2>
+        </ion-card-content>
+    </ion-card>
 
-    <p ion-text>{{ action }}</p>
-    <p ion-text>{{ data }}</p>
-    <p ion-text>{{ hasS + '' }}</p>
-    <p ion-text>{{ hasV + '' }}</p>
-    <p ion-text>{{ hasN + '' }}</p>
+    <button *ngIf="!userPrefs.isEnabled" ion-button full text-center color="primary" (click)="onChangeStateClick(false)">Enable</button>
+    <button *ngIf="userPrefs.isEnabled" ion-button full text-center color="danger" (click)="onChangeStateClick(true)">Disable</button>
 
-    <button ion-button color="primary" (click)="setSilent()">Silent</button>
-    <button ion-button color="primary" (click)="setVibrate()">Vibrate</button>
-    <button ion-button color="primary" (click)="setNormal()">Normal</button>
+    <button *ngIf="userPrefs.runInBackground && userPrefs.isEnabled" ion-button full text-center color="secondary" (click)="moveToBackground()">Send to background</button>
+    <button *ngIf="!cordovaAvailable" ion-button full text-center color="danger" (click)="clearStorage()">Clear storage</button>
+
+    <!--Just for debugging-->
+    <ion-row *ngIf="!cordovaAvailable">
+        <ion-col col-3>
+            <button ion-button full text-center color="secondary" (click)="generateCache()">Once</button>
+        </ion-col>
+        <ion-col col-3>
+            <button ion-button full text-center color="secondary" (click)="generateStanding()">Stand</button>
+        </ion-col>
+        <ion-col col-3>
+            <button ion-button full text-center color="secondary" (click)="generateMovingSteadily()">Moves</button>
+        </ion-col>
+        <ion-col col-3>
+            <button ion-button full text-center color="secondary" (click)="generateMovingChaotically()">Chaos</button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="cordovaAvailable">
+        <ion-col col-4="">
+            <button ion-button full color="primary" (click)="setSilent()">Silent</button>
+        </ion-col>
+        <ion-col col-4="">
+            <button ion-button full color="primary" (click)="setVibrate()">Vibrate</button>
+        </ion-col>
+        <ion-col col-4="">
+            <button ion-button full color="primary" (click)="setNormal()">Normal</button>
+        </ion-col>
+    </ion-row>
+
+    <ion-card *ngIf="userPrefs.isEnabled">
+        <ion-card-title text-center>Acceleration</ion-card-title>
+        <ion-card-content text-center>
+            <ion-row>
+                <ion-col col-4>X</ion-col>
+                <ion-col col-4>Y</ion-col>
+                <ion-col col-4>Z</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>{{ accelVal.x | number : '1.6-6' }}</ion-col>
+                <ion-col col-4>{{ accelVal.y | number : '1.6-6' }}</ion-col>
+                <ion-col col-4>{{ accelVal.z | number : '1.6-6' }}</ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="userPrefs.isEnabled">
+        <ion-card-title text-center>Gyroscope</ion-card-title>
+        <ion-card-content text-center>
+            <ion-row>
+                <ion-col col-4>X</ion-col>
+                <ion-col col-4>Y</ion-col>
+                <ion-col col-4>Z</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>{{ gyroVal.x | number : '1.6-6' }}</ion-col>
+                <ion-col col-4>{{ gyroVal.y | number : '1.6-6' }}</ion-col>
+                <ion-col col-4>{{ gyroVal.z | number : '1.6-6' }}</ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

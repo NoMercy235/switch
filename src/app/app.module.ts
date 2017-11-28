@@ -4,11 +4,13 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { PagesModule } from "../pages/pages.module";
 import { SharedModule } from "./shared/shared.module";
 import { SidemenuModule } from "./sidemenu/sidemenu.module";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { DeviceMotion } from '@ionic-native/device-motion';
+import { Gyroscope } from '@ionic-native/gyroscope';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 @NgModule({
     declarations: [
@@ -27,9 +29,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     ],
     providers: [
         StatusBar,
-        SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AndroidPermissions,
+        DeviceMotion,
+        Gyroscope,
+        BackgroundMode,
     ]
 })
 export class AppModule {}
