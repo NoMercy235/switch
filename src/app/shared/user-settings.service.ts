@@ -12,6 +12,7 @@ export interface UserSettings {
     silentScreenDelay?: number,
     motionSensibility?: number,
     standingMode?: string,
+    movingMode?: string,
 }
 
 @Injectable()
@@ -87,11 +88,19 @@ export class UserSettingsService {
     }
 
     setStandingMode(val: string): void {
-        this.setStorage('switch-motionSensibility', val).then(this.fireSettingsChangedEvent.bind(this));
+        this.setStorage('switch-standingMode', val).then(this.fireSettingsChangedEvent.bind(this));
     }
 
     getStandingMode(): Promise<string> {
         return this.getStorage('switch-standingMode').then((val: string) => val);
+    }
+
+    setMovingMode(val: string): void {
+        this.setStorage('switch-movingMode', val).then(this.fireSettingsChangedEvent.bind(this));
+    }
+
+    getMovingMode(): Promise<string> {
+        return this.getStorage('switch-movingMode').then((val: string) => val);
     }
 
     getSettings(): Promise<UserSettings> {
@@ -104,6 +113,7 @@ export class UserSettingsService {
             this.getSilentScreenDelay(),
             this.getMotionSensibility(),
             this.getStandingMode(),
+            this.getMovingMode(),
         ];
         return Promise.all<any>(promises).then((data: any[]): UserSettings => {
             return {
@@ -115,6 +125,7 @@ export class UserSettingsService {
                 silentScreenDelay: data[5] || 10,
                 motionSensibility: data[6] || 5,
                 standingMode: data[7] || 'silent',
+                movingMode: data[8] || 'normal',
             };
         });
     }
@@ -127,6 +138,8 @@ export class UserSettingsService {
         if(settings.silentScreen !== undefined) this.setSilentScreen(settings.silentScreen);
         if(settings.silentScreenDelay !== undefined) this.setSilentScreenDelay(settings.silentScreenDelay);
         if(settings.motionSensibility !== undefined) this.setMotionSensibility(settings.motionSensibility * 1000);
+        if(settings.standingMode !== undefined) this.setStandingMode(settings.standingMode);
+        if(settings.movingMode !== undefined) this.setMovingMode(settings.movingMode);
     }
 
     private fireSettingsChangedEvent(): void {

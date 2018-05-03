@@ -31,6 +31,7 @@ export class SettingsPage {
             motionSensibility: new FormControl(5),
             runInBackground: new FormControl(false),
             standingMode: new FormControl(this.modes[0]),
+            movingMode: new FormControl(this.modes[this.modes.length - 1]),
             // silentScreen: new FormControl(false),
             // silentScreenDelay: new FormControl(10,
             //     [Validators.min(10), Validators.max(300)]
@@ -44,6 +45,7 @@ export class SettingsPage {
             if (data.motionSensibility !== undefined) this.form.patchValue({ motionSensibility: data.motionSensibility / 1000 });
             if (data.runInBackground !== undefined) this.form.patchValue({ runInBackground: data.runInBackground });
             if (data.standingMode !== undefined) this.form.patchValue({ standingMode: data.standingMode });
+            if (data.movingMode !== undefined) this.form.patchValue({ movingMode: data.movingMode });
             // if (data.silentScreen !== undefined) this.form.patchValue({ silentScreen: data.silentScreen });
             // if (data.silentScreenDelay !== undefined) this.form.patchValue({ silentScreenDelay: data.silentScreenDelay });
         })
