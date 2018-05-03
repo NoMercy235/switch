@@ -101,15 +101,15 @@ export class HomePage {
     }
 
     setSilent(): void {
-        this.ringerService.setSilent().then(this.setData.bind(this)).catch(this.setErr.bind(this));
+        this.ringerService.setNormal('silent').then(this.setData.bind(this)).catch(this.setErr.bind(this));
     }
 
     setVibrate(): void {
-        this.ringerService.setVibrate().then(this.setData.bind(this)).catch(this.setErr.bind(this));
+        this.ringerService.setNormal('vibrate').then(this.setData.bind(this)).catch(this.setErr.bind(this));
     }
 
     setNormal(): void {
-        this.ringerService.setNormal().then(this.setData.bind(this)).catch(this.setErr.bind(this));
+        this.ringerService.setNormal('normal').then(this.setData.bind(this)).catch(this.setErr.bind(this));
     }
 
     getStateColor(): string {
