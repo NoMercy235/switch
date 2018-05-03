@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Events } from "ionic-angular";
 import { Globals } from "./globals";
+import { UserSettingsService } from "./user-settings.service";
 
 import * as cpr from 'cordova-plugin-ringermode/www/ringerMode';
 
@@ -16,6 +17,7 @@ export class RingerService {
 
     constructor(
         private events: Events,
+        private userSettings: UserSettingsService,
     ) {}
 
     isCordovaAvailable(): boolean {
@@ -32,7 +34,28 @@ export class RingerService {
         });
     }
 
-    setSilent(): Promise<any> {
+    setSilent(enforceMode?: 'silent' | 'vibrate' | 'normal'): Promise<any> {
+        if (enforceMode) return this.setMode(enforceMode);
+        return this.userSettings.getStandingMode().then((mode: 'silent' | 'vibrate' | 'normal') => this.setMode(mode))
+    }
+
+    setNormal(enforceMode?: 'silent' | 'vibrate' | 'normal'): Promise<any> {
+        if (enforceMode) return this.setMode(enforceMode);
+        return this.userSettings.getMovingMode().then((mode: 'silent' | 'vibrate' | 'normal') => this.setMode(mode))
+    }
+
+    private setMode(mode: 'silent' | 'vibrate' | 'normal'): Promise<any> {
+        switch (mode) {
+            case 'silent':
+                return this.silent();
+            case 'vibrate':
+                return this.vibrate();
+            case 'normal':
+                return this.normal();
+        }
+    }
+
+    private silent(): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             if (!this.isCordovaAvailable()) this.onResolve(resolve, RingerService.RINGER_MODE.silent);
             cpr.setRingerSilent(
@@ -42,7 +65,7 @@ export class RingerService {
         });
     }
 
-    setVibrate(): Promise<any> {
+    private vibrate(): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             if (!this.isCordovaAvailable()) this.onResolve(resolve, RingerService.RINGER_MODE.vibrate);
             cpr.setRingerVibrate(
@@ -52,7 +75,7 @@ export class RingerService {
         });
     }
 
-    setNormal(): Promise<any> {
+    private normal(): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             if (!this.isCordovaAvailable()) this.onResolve(resolve, RingerService.RINGER_MODE.normal);
             cpr.setRingerNormal(

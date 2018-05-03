@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 import { GyroscopeOrientation } from '@ionic-native/gyroscope';
-import { Utils } from "./utils";
 import { RingerService } from "./ringer.service";
 import { UserSettings, UserSettingsService } from "./user-settings.service";
+import { Utils } from "./utils";
 
 export interface Cache {
     accel: { x: number, y: number, z: number },
