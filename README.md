@@ -73,6 +73,20 @@ $ ionic serve
 ```
 <b>Warning! Due to extensive usages of native capabilities (such as gyroscope or accelerometer) this project can hardly be run in the browser (it can, with many workarounds, but it would be useless).</b>
 
+Do not forget to add `ANDROID_HOME` to path like so:
+
+For Windows:
+```bash
+set ANDROID_HOME=C:\installation location\AndroidSdk
+set PATH=%PATH%;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
+```
+
+For Linux:
+```bash
+export ANDROID_HOME=$HOME/AndroidSdk
+export PATH=$PATH:$ANDROID_HOME/tools
+```
+
  - To add the Android platform:
 
 ```bash
