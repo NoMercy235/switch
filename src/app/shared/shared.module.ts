@@ -5,6 +5,7 @@ import { UserSettingsService } from "./user-settings.service";
 import { MotionService } from "./motion.service";
 import { RingerService } from "./ringer.service";
 import { MotionChangeLogicService } from "./motion-change-logic.service";
+import { CapitalizePipe } from "./capitalize.pipe";
 
 @NgModule({
     imports: [
@@ -13,8 +14,12 @@ import { MotionChangeLogicService } from "./motion-change-logic.service";
     ],
     exports: [
         HttpModule,
+
+        CapitalizePipe,
     ],
-    declarations: [],
+    declarations: [
+        CapitalizePipe,
+    ],
     providers: [
         UserSettingsService,
         MotionService,

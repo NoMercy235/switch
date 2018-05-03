@@ -25,6 +25,12 @@
                 <ion-label>Run in background?</ion-label>
                 <ion-toggle [color]="'primary'" [formControlName]="'runInBackground'" [(ngModel)]="runInBackground" (ionChange)="onRunInBackgroundChange($event)"></ion-toggle>
             </ion-item>
+            <ion-item>
+                <ion-label>Standing mode:</ion-label>
+                <ion-select [formControlName]="'standingMode'">
+                    <ion-option *ngFor="let mode of modes" [value]="mode">{{ mode | swCapitalize }}</ion-option>
+                </ion-select>
+            </ion-item>
             <!--Removed because there is no support for this yet.-->
             <!--<ion-item>-->
                 <!--<ion-label>Stay silent while screen is on?</ion-label>-->

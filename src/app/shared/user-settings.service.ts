@@ -11,6 +11,7 @@ export interface UserSettings {
     silentScreen?: boolean,
     silentScreenDelay?: number,
     motionSensibility?: number,
+    standingMode?: string,
 }
 
 @Injectable()
@@ -85,6 +86,14 @@ export class UserSettingsService {
         return this.getStorage('switch-motionSensibility').then((val: number) => val);
     }
 
+    setStandingMode(val: string): void {
+        this.setStorage('switch-motionSensibility', val).then(this.fireSettingsChangedEvent.bind(this));
+    }
+
+    getStandingMode(): Promise<string> {
+        return this.getStorage('switch-standingMode').then((val: string) => val);
+    }
+
     getSettings(): Promise<UserSettings> {
         const promises = [
             this.getFrequency(),
@@ -94,6 +103,7 @@ export class UserSettingsService {
             this.getSilentScreen(),
             this.getSilentScreenDelay(),
             this.getMotionSensibility(),
+            this.getStandingMode(),
         ];
         return Promise.all<any>(promises).then((data: any[]): UserSettings => {
             return {
@@ -104,6 +114,7 @@ export class UserSettingsService {
                 silentScreen: data[4] || false,
                 silentScreenDelay: data[5] || 10,
                 motionSensibility: data[6] || 5,
+                standingMode: data[7] || 'silent',
             };
         });
     }

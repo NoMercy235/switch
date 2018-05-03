@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, ToastController } from 'ionic-angular';
 import { UserSettingsService } from "../../app/shared/user-settings.service";
 import { FormControl, FormGroup } from "@angular/forms";
+import { RingerService } from "../../app/shared/ringer.service";
 
 @IonicPage()
 @Component({
@@ -12,6 +13,7 @@ export class SettingsPage {
     public form: FormGroup;
 
     public runInBackground: boolean;
+    public modes: string[];
 
     constructor(
         private userSettings: UserSettingsService,
@@ -19,6 +21,7 @@ export class SettingsPage {
         private navCtrl: NavController,
         private alertCtrl: AlertController,
     ) {
+        this.modes = Object.keys(RingerService.RINGER_MODE);
         this.initForm();
     }
 
@@ -27,6 +30,7 @@ export class SettingsPage {
             frequency: new FormControl(300),
             motionSensibility: new FormControl(5),
             runInBackground: new FormControl(false),
+            standingMode: new FormControl(this.modes[0]),
             // silentScreen: new FormControl(false),
             // silentScreenDelay: new FormControl(10,
             //     [Validators.min(10), Validators.max(300)]
@@ -39,6 +43,7 @@ export class SettingsPage {
             if (data.frequency !== undefined) this.form.patchValue({ frequency: data.frequency });
             if (data.motionSensibility !== undefined) this.form.patchValue({ motionSensibility: data.motionSensibility / 1000 });
             if (data.runInBackground !== undefined) this.form.patchValue({ runInBackground: data.runInBackground });
+            if (data.standingMode !== undefined) this.form.patchValue({ standingMode: data.standingMode });
             // if (data.silentScreen !== undefined) this.form.patchValue({ silentScreen: data.silentScreen });
             // if (data.silentScreenDelay !== undefined) this.form.patchValue({ silentScreenDelay: data.silentScreenDelay });
         })
