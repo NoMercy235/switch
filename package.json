@@ -26,8 +26,8 @@
         "@ionic-native/gyroscope": "^4.7.0",
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
-        "cordova-android": "^6.4.0",
-        "cordova-browser": "^4.1.0",
+        "cordova-android": "^7.1.4",
+        "cordova-browser": "^5.0.4",
         "cordova-plugin-android-permissions": "^1.0.0",
         "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-device": "^1.1.7",
@@ -44,9 +44,9 @@
         "zone.js": "0.8.18"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "3.0.0",
-        "typescript": "2.3.4",
-        "hoek": "^4.2.1"
+        "@ionic/app-scripts": "^3.2.1",
+        "hoek": "^4.2.1",
+        "typescript": "2.3.4"
     },
     "description": "The project is trying to face an issue that I (and perhaps others are, too) am struggling with: being too lazy to switch the phone's profile from sound/vibration (when outside) to silent (when at work or sleeping).",
     "cordova": {
